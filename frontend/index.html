@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FraudFlow — Intelligent Investigation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="topbar">
+        <a class="brand" href="/">
+            <div class="brand-mark">F<span>.</span></div>
+            <div>
+                <h1>FraudFlow</h1>
+                <p>INTELLIGENT FRAUD INVESTIGATION</p>
+            </div>
+        </a>
+
+        <div class="top-status">
+            <span class="pulse"></span>
+            JAVA ENGINE CONNECTED
+        </div>
+    </header>
+
+    <main class="page">
+        <section class="hero">
+            <div class="hero-copy">
+                <div class="eyebrow"><span></span> CHAIN OF RESPONSIBILITY</div>
+                <h2>Every transaction<br>has a <span>story.</span></h2>
+                <p>Watch specialized fraud handlers investigate a transaction,
+                   pass responsibility forward, and make a final decision.</p>
+            </div>
+
+            <div class="hero-stat">
+                <div class="stat-icon">⌘</div>
+                <div>
+                    <span>INVESTIGATION PIPELINE</span>
+                    <strong>05 <small>HANDLERS</small></strong>
+                    <p>Sequential risk evaluation</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="workspace">
+            <aside class="input-panel">
+                <div class="section-kicker">01 / INPUT</div>
+                <h3>Transaction details</h3>
+                <p class="muted">Configure a transaction to start the Java investigation.</p>
+
+                <form id="transactionForm">
+                    <label for="amount">Transaction amount</label>
+                    <div class="amount-input">
+                        <span>₹</span>
+                        <input id="amount" name="amount" type="number"
+                               min="0.01" step="0.01" value="75000" required>
+                    </div>
+
+                    <label for="transfers">Recent transfer frequency</label>
+                    <input id="transfers" name="transfers" type="number"
+                           min="0" step="1" value="2" required>
+                    <p class="hint">Five or more transfers trigger a behavior risk.</p>
+
+                    <label for="location">Transaction location</label>
+                    <select id="location" name="location">
+                        <option value="known">Known location</option>
+                        <option value="unknown">Unfamiliar location</option>
+                    </select>
+
+                    <label for="device">Device verification</label>
+                    <select id="device" name="device">
+                        <option value="known">Recognized device</option>
+                        <option value="unknown">Unrecognized device</option>
+                    </select>
+
+                    <button class="primary-button" id="startButton" type="submit">
+                        <span>▶</span> Start investigation
+                    </button>
+                </form>
+
+                <div class="input-footer">
+                    <span class="lock-icon">◇</span>
+                    Processed locally by Java backend
+                </div>
+            </aside>
+
+            <section class="flow-panel">
+                <div class="flow-header">
+                    <div>
+                        <div class="section-kicker">02 / LIVE PIPELINE</div>
+                        <h3>Handler execution chain</h3>
+                    </div>
+                    <span class="flow-badge" id="pipelineStatus">STANDBY</span>
+                </div>
+
+                <div class="chain">
+                    <div class="chain-node" data-node="0">
+                        <div class="node-connector">
+                            <div class="node-icon">₹</div>
+                            <span class="node-line"></span>
+                        </div>
+                        <div class="node-info">
+                            <div class="node-title-row">
+                                <h4>Amount Check</h4>
+                                <span class="node-state">WAITING</span>
+                            </div>
+                            <p>Evaluates transaction value and critical limits.</p>
+                        </div>
+                    </div>
+
+                    <div class="chain-node" data-node="1">
+                        <div class="node-connector">
+                            <div class="node-icon">↗</div>
+                            <span class="node-line"></span>
+                        </div>
+                        <div class="node-info">
+                            <div class="node-title-row">
+                                <h4>Behavior Check</h4>
+                                <span class="node-state">WAITING</span>
+                            </div>
+                            <p>Looks for unusually frequent transfers.</p>
+                        </div>
+                    </div>
+
+                    <div class="chain-node" data-node="2">
+                        <div class="node-connector">
+                            <div class="node-icon">◎</div>
+                            <span class="node-line"></span>
+                        </div>
+                        <div class="node-info">
+                            <div class="node-title-row">
+                                <h4>Location Check</h4>
+                                <span class="node-state">WAITING</span>
+                            </div>
+                            <p>Checks whether the location is familiar.</p>
+                        </div>
+                    </div>
+
+                    <div class="chain-node" data-node="3">
+                        <div class="node-connector">
+                            <div class="node-icon">▣</div>
+                            <span class="node-line"></span>
+                        </div>
+                        <div class="node-info">
+                            <div class="node-title-row">
+                                <h4>Device Check</h4>
+                                <span class="node-state">WAITING</span>
+                            </div>
+                            <p>Verifies whether the device is recognized.</p>
+                        </div>
+                    </div>
+
+                    <div class="chain-node" data-node="4">
+                        <div class="node-connector">
+                            <div class="node-icon">✳</div>
+                        </div>
+                        <div class="node-info">
+                            <div class="node-title-row">
+                                <h4>Risk Scoring</h4>
+                                <span class="node-state">WAITING</span>
+                            </div>
+                            <p>Evaluates accumulated risk and decides the outcome.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flow-controls">
+                    <div class="step-progress">
+                        <div class="progress-track">
+                            <div id="progressBar"></div>
+                        </div>
+                        <span id="stepCounter">0 / 5 HANDLERS</span>
+                    </div>
+                    <button id="nextButton" class="next-button" disabled>
+                        Next handler <span>→</span>
+                    </button>
+                </div>
+            </section>
+        </section>
+
+        <section class="bottom-grid">
+            <div class="panel result-panel">
+                <div class="section-kicker">03 / DECISION</div>
+                <h3>Investigation outcome</h3>
+
+                <div id="outcomeEmpty" class="outcome-empty">
+                    <span>◌</span>
+                    <p>Your final decision will appear here.</p>
+                </div>
+
+                <div id="outcomeContent" hidden>
+                    <div id="decisionBadge" class="decision-badge">PENDING</div>
+                    <div class="score-row">
+                        <div>
+                            <p>Risk score</p>
+                            <small>Accumulated handler points</small>
+                        </div>
+                        <strong id="riskScore">0</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel trace-panel">
+                <div class="section-kicker">04 / TRANSPARENCY</div>
+                <h3>Handler activity log</h3>
+                <p class="muted trace-description">
+                    Select Next Handler to inspect each step of the returned Java execution trace.
+                </p>
+                <div id="traceEmpty" class="trace-empty">No investigation has started yet.</div>
+                <ol id="traceList" class="trace-list"></ol>
+            </div>
+        </section>
+
+        <footer>
+            <span><strong>FraudFlow</strong> · Academic prototype</span>
+            <span>Powered by Java · Chain of Responsibility</span>
+        </footer>
+    </main>
+
+    <div id="toast" class="toast" role="status" hidden></div>
+    <script src="script.js"></script>
+</body>
+</html>
